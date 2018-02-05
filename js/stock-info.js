@@ -4,33 +4,6 @@ const topTen = [
 "ABT", "PBF", "BAC", "AAPL", "MSFT", "BABA","JPM","BRK.B","NVDA","SBUX",
 ];
 
-function GetDateStr() {
-	var d = GetRecentWeekday();
-
-	return formatDate(d);
-}
-
-function formatDate(date) {
-	var day = date.getDate();
-	var month = date.getMonth() + 1;
-
-	if (month.length < 2) month = '0' + month;
-	if (day.length < 2) day = '0' + day;
-
-	return [date.getFullYear(), month, day].join('-');
-}
-
-function GetRecentWeekday() {
-	var d = new Date();
-	if(d.getDay() == 0) {
-		d.setDate(d.getDate() - 2);
-	}
-	else if (d.getDay() == 6) {
-		d.setDate(d.getDate() - 1);
-	}
-	return d;
-}
-
 function getLatestClose(sym) {
 	return new Promise(function(resolve, reject) {
 		return $.getJSON(GetAPIStr(sym)).then(function(data) {
@@ -68,7 +41,10 @@ function GetTickerVals(Symbols) {
 }
 
 function FillTicker(symbols, vals) {
+
+	console.log(vals);
 	for (var i = 0; i < vals.length; i++) {
-		$('#scrollingText').append('<p>' + symbols[i] + "--" + vals[i] + '</p>');
+
+		$('#scrollingText').append('<p>' + symbols[i] + "-- $" + parseFloat(vals[i]).toFixed(2) + '</p>');
 	}	
 }
