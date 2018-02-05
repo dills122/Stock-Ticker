@@ -44,9 +44,6 @@ box-shadow: 0px 0px 27px 5px rgba(204,204,204,0.67);
 	white-space: nowrap;
 }
 
-/* The scroll wrapper is always the same width and height as the containing element (div).
-Overflow is hidden because you don't want to show all of the scrollable area.
-*/
 div.scrollWrapper
 {
 	position: relative;
